@@ -33,7 +33,7 @@ public class GameOver : Singleton<GameOver>
 
     private void Scene()
     {
-        SceneManager.LoadScene("Title");
-        //메인 씬 으로 전환
+        Camera.main.transform.position = new Vector3(0,14,-10);
+        Title.Instance.StartSet();
     }
 }
