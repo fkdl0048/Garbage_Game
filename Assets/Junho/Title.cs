@@ -12,6 +12,8 @@ public class Title : Singleton<Title>
     public GameObject ingameWnd;
     public GameObject fadeImage;
 
+    public bool isGameStart;
+
     private GameObject btn;
     public void StartBtn()
     {
