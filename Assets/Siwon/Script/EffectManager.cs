@@ -30,8 +30,6 @@ public class EffectManager : Singleton<EffectManager>
     {
         GameObject effect = null;
 
-        if (effect == null)
-            return;
         if (type == EEffectType.AddTime)
         {
             effect = Instantiate(effects[(int)type], canvas.transform);
@@ -43,7 +41,7 @@ public class EffectManager : Singleton<EffectManager>
 
         if (type == EEffectType.AddTime)
         {
-            effect.transform.position = new Vector2(850, -200);
+            effect.transform.localPosition = new Vector2(850, -200);
         }
         else
         {

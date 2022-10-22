@@ -54,7 +54,12 @@ public class Item : MonoBehaviour
     {
         SoundManager.Instance.PlaySound(ESoundSources.ETC_SLIME);
 
-        Collider[] colls = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Garbage"));
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, LayerMask.GetMask("Garbage"));
+
+        //Gizmos.DrawWireSphere(transform.position, 2f);
+
+        print(colls.Length);
+
         for (int i = 0; i < colls.Length; i++)
         {
             colls[i].gameObject.transform.SetParent(transform);
