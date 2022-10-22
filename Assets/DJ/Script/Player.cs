@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
     {
         anim.SetBool("Jump", true);
         ismove = false;
-        yield return new WaitForSeconds(jumpdelay);
+        yield return new WaitForSeconds(jumpdelay); 
         rigid.velocity += Vector2.up * jumpPower;
         isC_Jump = false;
         isJump = true;
