@@ -35,6 +35,7 @@ public class TimeAttack : Singleton<TimeAttack>
 
     private void FixedUpdate()
     {
+        if (Spawner.Instance.isSpawn)
         TimeValue += Time.deltaTime;
     }
 }

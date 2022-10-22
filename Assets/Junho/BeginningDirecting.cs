@@ -14,6 +14,7 @@ public class BeginningDirecting : MonoBehaviour
             fade.GetComponent<SpriteRenderer>().DOFade(0, 1).OnComplete(() => {
                 fade.gameObject.SetActive(false);
                 Title.Instance.ingameWnd.SetActive(true);
+                Spawner.Instance.isSpawn = true;
             });
         }
     }

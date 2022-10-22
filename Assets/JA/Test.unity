@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce663fb1138f9374888a555ad980057d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSpawn: 1
+  isSpawn: 0
   spawnDelay: 1
   spawnRandominterval: 0.5
   itemList:
@@ -1105,6 +1105,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2385371103112582177, guid: 6b869790d47293b4e9c0dbfa138152b6, type: 3}
+      propertyPath: maxTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385371103112582181, guid: 6b869790d47293b4e9c0dbfa138152b6, type: 3}
+      propertyPath: m_IgnoreReversedGraphics
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2385371103112582182, guid: 6b869790d47293b4e9c0dbfa138152b6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
