@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42c703b01de326349bd86fb4e963c3c4, type: 3}
-  m_Name: Vine
+  m_Name: Fire
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 4
   itemSprite: {fileID: 21300000, guid: 1e7f37b047ffb724483c0dd7a7691078, type: 3}
   name: Vine
   force: 0
