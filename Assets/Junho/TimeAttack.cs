@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class TimeAttack : Singleton<TimeAttack>
 {
     [SerializeField]
     private Slider timeSlider;
+    [SerializeField]
+    private GameObject handle;
 
     [SerializeField] private float maxTime;
 
@@ -22,9 +25,10 @@ public class TimeAttack : Singleton<TimeAttack>
             }
             if (timeValue > maxTime)
             {
-                //event
+                SceneManager.LoadScene("DeathEnding");
             }
 
+            handle.transform.Rotate(0, 0, timeValue);
             timeSlider.value = timeValue / maxTime;
         }
     }
