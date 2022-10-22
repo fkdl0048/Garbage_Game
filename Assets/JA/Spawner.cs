@@ -34,6 +34,7 @@ public class Spawner : MonoBehaviour
             go.AddComponent<SpriteRenderer>();
             go.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,(sprites.Length))];
             go.AddComponent<PolygonCollider2D>();
+            go.AddComponent<Dust>();
             yield return new WaitForSeconds(spawnDelay + (Random.Range(-spawnRandominterval, spawnRandominterval)));
         }
     }
