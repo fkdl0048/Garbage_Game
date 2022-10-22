@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Garbage"))
+        if (collision.CompareTag("Garbage") && isThrowing == true)
         {
             switch (itemType)
             {
@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
                     Boom();
                     break;
                 case EItemType.StaticBlock://¸ø
-                    StaticBlock();
+                    StaticBlock(collision.gameObject);
                     break;
                 case EItemType.Fire:
                     Fire();
@@ -86,9 +86,10 @@ public class Item : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void StaticBlock()
+    private void StaticBlock(GameObject obj)
     {
         rb.bodyType = RigidbodyType2D.Static;
+        obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 
     private void Fire()
@@ -118,6 +119,7 @@ public class Item : MonoBehaviour
     private void AddTime()
     {
         TimeAttack.Instance.TimeValue -= 10f;
+        //Effect
         Destroy(gameObject);
         
     }
