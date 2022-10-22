@@ -5,9 +5,12 @@ using UnityEngine;
 public enum EItemType
 {
     None,
-    Vine,//µ¢±¼
+    Slime,//µ¢±¼
     Boom,
     StaticBlock,
+    Fire,
+    Frozen,
+    AddTime,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Datas/ItemData", order = int.MinValue)]
@@ -17,9 +20,4 @@ public class ItemData : ScriptableObject
 
     public Sprite itemSprite;
 
-    public string name;
-
-    public float force;
-
-    
 }
