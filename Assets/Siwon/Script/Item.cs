@@ -61,7 +61,7 @@ public class Item : MonoBehaviour
 
         isFallen = true;
 
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, LayerMask.GetMask("Garbage"));
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, 6);
 
         //Gizmos.DrawWireSphere(transform.position, 2f);
 
