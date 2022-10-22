@@ -5,9 +5,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 public class BeginningDirecting : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject StartBtnObj;
-    [SerializeField]
     private GameObject fade=> Title.Instance.fadeImage;
 
     private void OnCollisionEnter2D(Collision2D collision)

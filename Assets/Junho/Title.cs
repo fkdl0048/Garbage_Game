@@ -21,7 +21,7 @@ public class Title : Singleton<Title>
         {
             GameObject go = Instantiate(btnObj);
             go.transform.position = new Vector3(0, 14, 0);
-            Camera.main.gameObject.transform.position = new Vector3(0, 0, -10);
+            Camera.main.gameObject.transform.position = new Vector3(0, -6, -10);
             btn = go;
         });
     }
