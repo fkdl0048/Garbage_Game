@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private bool ismove = true;
     private GameObject getTrash;
     [Header("Animation")]
-    [SerializeField] Animation[] blink;
+    [SerializeField] AnimationClip[] blink;
     private Animator anim;
     [Header("Stats")]
     [SerializeField] float throwPower;
@@ -28,18 +28,22 @@ public class Player : MonoBehaviour
     [Header("Mark")]
     [SerializeField] GameObject markObject;
     [SerializeField] GameObject groupObject;
-    [SerializeField] int markcount;
+    [SerializeField] float markCount;
+    [SerializeField] float markDis;
     private List<GameObject> markGroup = new List<GameObject>();
     private void Start()
     {
         dragLine = GetComponent<LineRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        for (int i = 0; i < markcount; i++)
+        for (int i = 0; i < markCount; i++)
+        {
             markGroup.Add(Instantiate(markObject, transform.position, transform.rotation, groupObject.transform));
+            markGroup[i].GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, i / markCount);
+        }
     }
     void Update()
-    {
+    { 
         if (getTrash != null)
         {
             getTrash.transform.position = transform.position + Vector3.up;
@@ -90,6 +94,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            groupObject.SetActive(true);
             clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickPos.z = 0;
             dragLine.enabled = true;
@@ -100,8 +105,8 @@ public class Player : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             dragLine.SetPosition(1, mousePos);
-            for (int i = 0; i < markcount; i++)
-                markGroup[i].transform.position = MarkRoute(i);
+            for (int i = 0; i < markCount; i++)
+                markGroup[i].transform.position = MarkRoute((float)i/ markDis);
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -112,21 +117,24 @@ public class Player : MonoBehaviour
     IEnumerator Shottrash()
     {
         anim.SetBool("Throw", true);
-        getTrash.tag = "DropTrash";
-        Vector2 movepower = Vector2.ClampMagnitude(clickPos - mousePos,maxthrowPower);
+        groupObject.SetActive(false);
+        Vector2 movepower = Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower);
         transform.rotation = Quaternion.Euler(0, 180 * (movepower.x > 0 ? 0 : 1), 0);
         ismove = false;
-        getTrash = null;
+        getTrash.tag = "DropTrash";
         yield return new WaitForSeconds(0.3f);
+        getTrash = null;
         ismove = true;
         trashColider.isTrigger = false;
-        trashrigid.AddForce(movepower * throwPower);
         trashrigid.gravityScale = 1;
+        trashrigid.AddForce(movepower * throwPower);
         anim.SetBool("Throw", false);
     }
-    private Vector2 MarkRoute(float time)
+    private Vector2 MarkRoute(float count)
     {
-        return Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower) * time + 0.5f * Physics2D.gravity * time * time;
+        return new Vector2(getTrash.transform.position.x, getTrash.transform.position.y) //발사 위치
+            + (Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower)) * count//발사 방향 / for문 idx
+            + 0.5f * Physics2D.gravity * count * count;;//몰라
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
