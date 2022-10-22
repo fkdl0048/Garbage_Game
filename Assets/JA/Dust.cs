@@ -9,6 +9,9 @@ public class Dust : MonoBehaviour
     {
         if ((col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Garbage")) && !isGround)
         {
+            //temp
+            this.gameObject.tag = "Garbage";
+            
             isGround = true;
             GameObject go = DustEffect.Instance.SetDustEffect();
             go.transform.position = col.contacts[0].point;
