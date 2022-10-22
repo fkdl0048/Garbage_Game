@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public ItemData data;
-
     private SpriteRenderer spriterenderer;
 
     public EItemType itemType;
@@ -20,7 +18,6 @@ public class Item : MonoBehaviour
     {
         spriterenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        spriterenderer.sprite = data.itemSprite;
     }
 
 
@@ -54,31 +51,16 @@ public class Item : MonoBehaviour
     {
         SoundManager.Instance.PlaySound(ESoundSources.ETC_SLIME);
 
-        Collider[] colls = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Garbage"));
+        Collider[] colls = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Garbage"));
         for (int i = 0; i < colls.Length; i++)
         {
             colls[i].gameObject.transform.SetParent(transform);
-            EffectManager.Instance.EffectSpawn(EEffectType.Slime, colls[i].transform, 0);
         }
     }
 
     private void Boom()
     {
-        //Rigidbody2D[] rb = null;
-
-        //for (int i = 0; i < colls.Length; i++)
-        //{
-        //    rb[i] = colls[i].GetComponent<Rigidbody2D>();
-        //}
-
         spriterenderer.color = fadeColor;
-
-        //for (int i = 0; i < colls.Length; i++)
-        //{
-        //    colls[i].GetComponent<Transform>().localScale
-        //        = Vector2.Lerp(colls[i].transform.localScale, new Vector2(1.5f, 1.5f),0.1f);
-        //}
-
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
         EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform, 0.5f);
         Destroy(gameObject);
@@ -92,7 +74,7 @@ public class Item : MonoBehaviour
 
     private void Fire()
     {
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask("Garbage"));
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, LayerMask.GetMask("Garbage"));
 
         for (int i = 0; i < colls.Length; i++)
         {
@@ -104,7 +86,7 @@ public class Item : MonoBehaviour
 
     private void Frozen()
     {
-        Collider[] colls = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Garbage"));
+        Collider[] colls = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Garbage"));
         gameObject.SetActive(false);
         for (int i = 0; i < colls.Length; i++)
         {

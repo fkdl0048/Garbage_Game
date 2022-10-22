@@ -8,7 +8,6 @@ public enum EEffectType
     Fire,
     Landing,
     Boom,
-    Slime,
     AddTime,
 }
 public class EffectManager : Singleton<EffectManager>
@@ -35,11 +34,7 @@ public class EffectManager : Singleton<EffectManager>
             return;
         effect = Instantiate(effects[(int)type],canvas.transform);
 
-        if (type == EEffectType.Slime)
-        {
-            effect.transform.SetParent(pos);
-        }
-        else if(type == EEffectType.AddTime)
+        if(type == EEffectType.AddTime)
         {
             effect.transform.position = new Vector2(850, -200);
         }
