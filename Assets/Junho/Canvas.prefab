@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b71d63678f68142b0813c2180e7269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxY: 5
-  minY: -5
+  maxY: 14
+  minY: -6.15
   isTopPanel: 1
 --- !u!1 &2385371101908185050
 GameObject:
@@ -616,8 +616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b71d63678f68142b0813c2180e7269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxY: 5
-  minY: -5
+  maxY: 14
+  minY: -6.15
   isTopPanel: 0
 --- !u!1 &2385371103918917324
 GameObject:
