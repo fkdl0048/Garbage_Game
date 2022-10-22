@@ -22,9 +22,15 @@ public class Item : MonoBehaviour
 
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Garbage") && isThrowing)
+        if (collision.gameObject.CompareTag("Player")) return;
+
+        if (itemType == EItemType.StaticBlock && isThrowing)
+        {
+            StaticBlock(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Garbage") && isThrowing)
         {
             switch (itemType)
             {
@@ -33,9 +39,6 @@ public class Item : MonoBehaviour
                     break;
                 case EItemType.Boom://Boom!!!!
                     Boom();
-                    break;
-                case EItemType.StaticBlock://¸ø
-                    StaticBlock(collision.gameObject);
                     break;
                 case EItemType.Fire:
                     Fire();
@@ -62,8 +65,9 @@ public class Item : MonoBehaviour
     {
         spriterenderer.color = fadeColor;
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
+
         EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform, 0.5f);
-        Destroy(gameObject);
+        Destroy(gameObject, 0.4f);
     }
 
     private void StaticBlock(GameObject obj)
@@ -99,7 +103,7 @@ public class Item : MonoBehaviour
     private void AddTime()
     {
         TimeAttack.Instance.TimeValue -= 10f;
-        EffectManager.Instance.EffectSpawn(EEffectType.AddTime, transform ,0.5f);
+        EffectManager.Instance.EffectSpawn(EEffectType.AddTime, transform, 0.5f);
         Destroy(gameObject);
     }
 
