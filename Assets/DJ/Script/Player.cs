@@ -170,6 +170,13 @@ public class Player : MonoBehaviour
             trashrigid.gravityScale = 0;
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Clear"))
+        {
+            SceneManager.LoadScene("HeHe");//Clear씬
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.DrawCube(transform.position + RangePos, pressRange);

@@ -10,6 +10,7 @@ public class DeathEnding : MonoBehaviour
     void Start()
     {
         StartCoroutine(Fade());
+        SoundManager.Instance.PlayBgm(EBGMSources.ENDING_BGM);
     }
 
     private void FixedUpdate()

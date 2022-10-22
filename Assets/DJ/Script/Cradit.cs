@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cradit : MonoBehaviour
 {
     [SerializeField] GameObject Text;
     [SerializeField] GameObject Panel;
     [SerializeField] GameObject Button;
+    [SerializeField] Image Endding;
     [SerializeField] float UpSpeed;
     void Start()
     {
-        
+        StartCoroutine(Fade(5));
+        SoundManager.Instance.PlayBgm(EBGMSources.ENDING_BGM);
     }
 
     // Update is called once per frame
@@ -27,5 +31,10 @@ public class Cradit : MonoBehaviour
     public void ExitButton()
     {
         Application.Quit();
+    }
+    private IEnumerator Fade(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Endding.DOFade(0, 1).OnComplete(() =>  Destroy(Endding));
     }
 }
