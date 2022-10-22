@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxY: 14
-  minY: -6.15
+  minY: -6
   isTopPanel: 0
 --- !u!1 &2385371103918917324
 GameObject:

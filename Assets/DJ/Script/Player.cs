@@ -51,8 +51,8 @@ public class Player : MonoBehaviour
         }
         if(ismove) Walk();
         if(ismove) Jump();
-        //                      ¹Ì¼¼ ¿òÁ÷ÀÓ
-        if (isC_Jump != true && rigid.velocity.y < 0.001f && rigid.velocity.y > -0.001f)//¹Ì¼¼ ¿òÁ÷ÀÓ
+        //                      ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        if (isC_Jump != true && rigid.velocity.y < 0.001f && rigid.velocity.y > -0.001f)//ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
             isJump = false;
             anim.SetBool("Jump", false);
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         {
             isC_Jump = true;
             StartCoroutine(C_Jump());
-        }//Á¡ÇÁ
+        }//ï¿½ï¿½ï¿½ï¿½
     }
 
     IEnumerator C_Jump()
@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         Vector2 movepower = Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower);
         transform.rotation = Quaternion.Euler(0, 180 * (movepower.x > 0 ? 0 : 1), 0);
         ismove = false;
-        getTrash.tag = "Garbege";
+        getTrash.tag = "Garbage";
         yield return new WaitForSeconds(0.3f);
         getTrash = null;
         ismove = true;
@@ -132,14 +132,14 @@ public class Player : MonoBehaviour
     }
     private Vector2 MarkRoute(float count)
     {
-        return new Vector2(getTrash.transform.position.x, getTrash.transform.position.y) //¹ß»ç À§Ä¡
-            + (Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower)) * count//¹ß»ç ¹æÇâ / for¹® idx
-            + 0.5f * Physics2D.gravity * count * count;;//¸ô¶ó
+        return new Vector2(getTrash.transform.position.x, getTrash.transform.position.y) //ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
+            + (Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower)) * count//ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ / forï¿½ï¿½ idx
+            + 0.5f * Physics2D.gravity * count * count;;//ï¿½ï¿½ï¿½ï¿½
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag;
-        if (collision.gameObject.tag != "Garbege" && collision.gameObject.tag != "Floor" && getTrash == null)
+        if (collision.gameObject.tag != "Garbage" && collision.gameObject.tag != "Ground" && getTrash == null)
         {
             getTrash = collision.gameObject;
             trashColider = getTrash.GetComponent<Collider2D>();
