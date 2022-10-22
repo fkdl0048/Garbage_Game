@@ -56,6 +56,9 @@ public class Item : MonoBehaviour
                 case EItemType.Frozen:
                     Frozen();
                     break;
+                case EItemType.AddTime:
+
+                    break;
             }
         }
     }
@@ -121,6 +124,11 @@ public class Item : MonoBehaviour
             colls[i].gameObject.transform.SetParent(transform);
             EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform.position, 0);
         }
+    }
+
+    private void AddTime()
+    {
+
     }
 
     //private IEnumerator FadeOut()
