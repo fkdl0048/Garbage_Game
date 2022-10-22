@@ -32,9 +32,16 @@ public class EffectManager : Singleton<EffectManager>
 
         if (effect == null)
             return;
-        effect = Instantiate(effects[(int)type],canvas.transform);
+        if (type == EEffectType.AddTime)
+        {
+            effect = Instantiate(effects[(int)type], canvas.transform);
+        }
+        else
+        {
+            effect = Instantiate(effects[(int)type]);
+        }
 
-        if(type == EEffectType.AddTime)
+        if (type == EEffectType.AddTime)
         {
             effect.transform.position = new Vector2(850, -200);
         }
