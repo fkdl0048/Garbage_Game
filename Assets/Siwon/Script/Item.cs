@@ -24,26 +24,37 @@ public class Item : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public bool isThrowing;
 
     private void Start()
     {
         spriterenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        spriterenderer.sprite = data.itemSprite;
     }
+
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Garbage"))
+        if (collision.CompareTag("Garbage") && isThrowing == true)
         {
             switch (data.itemType)
             {
-                case EItemType.Vine:
+                case EItemType.Slime:
                     TieGarBage();
                     break;
-                case EItemType.Boom:
+                case EItemType.Boom://Boom!!!!
                     Boom();
                     break;
-                case EItemType.StaticBlock:
+                case EItemType.StaticBlock://못
                     StaticBlock();
+                    break;
+                case EItemType.Fire:
+                    Fire();
+                    break;
+                case EItemType.Frozen:
+                    Frozen();
                     break;
             }
         }
@@ -57,12 +68,12 @@ public class Item : MonoBehaviour
         for (int i = 0; i < colls.Length; i++)
         {
             colls[i].gameObject.transform.SetParent(transform);
+            EffectManager.Instance.EffectSpawn(EEffectType.Slime, colls[i].transform.position, 0);
         }
     }
 
     private void Boom()
     {
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 10f);
         //Rigidbody2D[] rb = null;
 
         //for (int i = 0; i < colls.Length; i++)
@@ -79,8 +90,8 @@ public class Item : MonoBehaviour
         //}
 
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
+        EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform.position, 0.5f);
         gameObject.SetActive(false);
-        //이펙트소환
     }
 
     private void StaticBlock()
@@ -88,12 +99,35 @@ public class Item : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Static;
     }
 
-
-    private IEnumerator FadeOut()
+    private void Fire()
     {
-        yield return new WaitForSeconds(2f);
-        spriterenderer.color = Color.Lerp(spriterenderer.color, fadeColor, 2f);
-        yield return new WaitForSeconds(2f);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 10f);
+
+        for (int i = 0; i < colls.Length; i++)
+        {
+            EffectManager.Instance.EffectSpawn(EEffectType.Fire, colls[i].transform.position, 0.5f);
+            Destroy(colls[i].gameObject, 0.5f);
+        }
         Destroy(gameObject);
     }
+
+    private void Frozen()
+    {
+        spriterenderer.color = fadeColor;
+        Collider[] colls = Physics.OverlapSphere(transform.position, 10f);
+        gameObject.SetActive(false);
+        for (int i = 0; i < colls.Length; i++)
+        {
+            colls[i].gameObject.transform.SetParent(transform);
+            EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform.position, 0);
+        }
+    }
+
+    //private IEnumerator FadeOut()
+    //{
+    //    yield return new WaitForSeconds(2f);
+    //    spriterenderer.color = Color.Lerp(spriterenderer.color, fadeColor, 2f);
+    //    yield return new WaitForSeconds(2f);
+    //    Destroy(gameObject);
+    //}
 }
