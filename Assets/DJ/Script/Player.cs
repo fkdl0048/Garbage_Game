@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         if(ismove) Walk();
         if(ismove) Jump();
         //                      �̼� ������
-        if (isC_Jump != true && rigid.velocity.y < 0.001f && rigid.velocity.y > -0.001f)//�̼� ������
+        if (isC_Jump != true && rigid.velocity.y < 0.1f && rigid.velocity.y > -0.1f)//�̼� ������
         {
             isJump = false;
             anim.SetBool("Jump", false);

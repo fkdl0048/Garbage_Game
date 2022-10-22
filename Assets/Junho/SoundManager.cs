@@ -36,16 +36,17 @@ public enum EG_FALLS
 public enum EBGMSources
 {
     MAIN_BGM,
-    GAME_OVER_BGM,
     ENDING_BGM,
     END
 }
 
 public class SoundManager : Singleton<SoundManager>
 {
-
+    [SerializeField]
     private List<AudioClip> audioSources = new List<AudioClip>();
+    [SerializeField]
     private List<AudioClip> bgmSources = new List<AudioClip>();
+    [SerializeField]
     private List<AudioClip> g_Falls = new List<AudioClip>();
 
 
@@ -65,7 +66,7 @@ public class SoundManager : Singleton<SoundManager>
         }
         for (int i = 0; i < ((int)EG_FALLS.END); i++)
         {
-            bgmSources.Add(Resources.Load<AudioClip>("Audio/" + ((EG_FALLS)i).ToString()));
+            g_Falls.Add(Resources.Load<AudioClip>("Audio/" + ((EG_FALLS)i).ToString()));
         }
 
         BGMVolum = PlayerPrefs.GetFloat("BGMVolum");

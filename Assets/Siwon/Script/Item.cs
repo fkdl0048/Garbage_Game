@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Garbage") && isThrowing == true)
+        if (collision.CompareTag("Garbage"))
         {
             switch (itemType)
             {
@@ -43,9 +43,6 @@ public class Item : MonoBehaviour
                 case EItemType.Fire:
                     Fire();
                     break;
-                case EItemType.Frozen:
-                    Frozen();
-                    break;
                 case EItemType.AddTime:
                     AddTime();
                     break;
@@ -55,12 +52,11 @@ public class Item : MonoBehaviour
 
     private void TieGarBage()
     {
-        Collider[] colls = Physics.OverlapSphere(transform.position, 10f);
-        gameObject.SetActive(false);
+        Collider[] colls = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Garbage"));
         for (int i = 0; i < colls.Length; i++)
         {
             colls[i].gameObject.transform.SetParent(transform);
-            EffectManager.Instance.EffectSpawn(EEffectType.Slime, colls[i].transform.position, 0);
+            EffectManager.Instance.EffectSpawn(EEffectType.Slime, colls[i].transform, 0);
         }
     }
 
@@ -82,7 +78,7 @@ public class Item : MonoBehaviour
         //}
 
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
-        EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform.position, 0.5f);
+        EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform, 0.5f);
         Destroy(gameObject);
     }
 
@@ -94,11 +90,11 @@ public class Item : MonoBehaviour
 
     private void Fire()
     {
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 10f);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask("Garbage"));
 
         for (int i = 0; i < colls.Length; i++)
         {
-            EffectManager.Instance.EffectSpawn(EEffectType.Fire, colls[i].transform.position, 0.5f);
+            EffectManager.Instance.EffectSpawn(EEffectType.Fire, colls[i].transform, 0.5f);
             Destroy(colls[i].gameObject, 0.5f);
         }
         Destroy(gameObject);
@@ -106,12 +102,12 @@ public class Item : MonoBehaviour
 
     private void Frozen()
     {
-        Collider[] colls = Physics.OverlapSphere(transform.position, 10f);
+        Collider[] colls = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Garbage"));
         gameObject.SetActive(false);
         for (int i = 0; i < colls.Length; i++)
         {
             colls[i].gameObject.transform.SetParent(transform);
-            EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform.position, 0);
+            //EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform, 0);
         }
     }
 
@@ -119,9 +115,8 @@ public class Item : MonoBehaviour
     private void AddTime()
     {
         TimeAttack.Instance.TimeValue -= 10f;
-        //Effect
+        EffectManager.Instance.EffectSpawn(EEffectType.AddTime, transform ,0.5f);
         Destroy(gameObject);
-        
     }
 
     //private IEnumerator FadeOut()

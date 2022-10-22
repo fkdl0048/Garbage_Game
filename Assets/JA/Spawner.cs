@@ -54,6 +54,7 @@ public class Spawner : MonoBehaviour
             else
             {
                 GameObject go = new GameObject("Garbage");
+                go.layer = 6;
                 go.transform.position = pos;
                 go.transform.rotation = Quaternion.Euler(1,1,Random.Range(0,360));
                 go.AddComponent<Rigidbody2D>();
