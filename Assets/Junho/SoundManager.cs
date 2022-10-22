@@ -29,20 +29,8 @@ public enum EBGMSources
     END
 }
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
-    private static SoundManager instance;
-    public static SoundManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<SoundManager>();
-            }
-            return instance;
-        }
-    }
 
     private List<AudioClip> audioSources = new List<AudioClip>();
     private List<AudioClip> bgmSources = new List<AudioClip>();
@@ -53,8 +41,6 @@ public class SoundManager : MonoBehaviour
     public AudioSource bgm;
     private void Awake()
     {
-        instance = this;
-
         for (int i = 0; i < ((int)ESoundSources.END); i++)
         {
             audioSources.Add(Resources.Load<AudioClip>("Audio/" + ((ESoundSources)i).ToString()));
