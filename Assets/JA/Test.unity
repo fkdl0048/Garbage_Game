@@ -400,6 +400,7 @@ MonoBehaviour:
   - {fileID: 7869788111356961772, guid: bb1c7389847acad4ba3600dc65702746, type: 3}
   - {fileID: 7869788111356961772, guid: 20ac45f3e8e622a4d94221c6fbb40c7c, type: 3}
   - {fileID: 7869788111356961772, guid: 48e4427d0ce072644951ed1c12f2b1a2, type: 3}
+  - {fileID: 7869788111356961772, guid: 5c5b8a233b26c624f85fd6aeb3da8ba9, type: 3}
   itemDelay: 10
   itemRandominterval: 0.2
 --- !u!212 &1235520718
