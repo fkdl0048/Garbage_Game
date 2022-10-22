@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         Vector2 movepower = Vector2.ClampMagnitude(clickPos - mousePos, maxthrowPower);
         transform.rotation = Quaternion.Euler(0, 180 * (movepower.x > 0 ? 0 : 1), 0);
         ismove = false;
-        getTrash.tag = "DropTrash";
+        getTrash.tag = "Garbege";
         yield return new WaitForSeconds(0.3f);
         getTrash = null;
         ismove = true;
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag;
-        if (collision.gameObject.tag != "DropTrash" && collision.gameObject.tag != "Floor" && getTrash == null)
+        if (collision.gameObject.tag != "Garbege" && collision.gameObject.tag != "Floor" && getTrash == null)
         {
             getTrash = collision.gameObject;
             trashColider = getTrash.GetComponent<Collider2D>();

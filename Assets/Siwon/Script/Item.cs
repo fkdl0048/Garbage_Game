@@ -25,7 +25,7 @@ public class Item : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Garbage") && isThrowing == true)
+        if (collision.CompareTag("Garbage"))
         {
             switch (data.itemType)
             {
