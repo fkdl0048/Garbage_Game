@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
 
     private SpriteRenderer spriterenderer;
 
+    public EItemType itemType;
+
     private Color fadeColor = new Color(255, 255, 255, 0);
 
     private Rigidbody2D rb;
@@ -27,7 +29,7 @@ public class Item : MonoBehaviour
     {
         if (collision.CompareTag("Garbage") && isThrowing == true)
         {
-            switch (data.itemType)
+            switch (itemType)
             {
                 case EItemType.Slime:
                     TieGarBage();
