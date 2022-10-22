@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField]
     private float minY;
 
-
+    public bool isMove = true;
     [SerializeField]
     private bool isTopPanel;
     private bool isEnter;
@@ -39,7 +39,7 @@ public class CameraMove : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void FixedUpdate()
     {
         Check();
-        if (isEnter)
+        if (isEnter && isMove)
         {
             camera.transform.position = Vector3.Lerp(
             camera.transform.position,
@@ -50,7 +50,7 @@ public class CameraMove : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private void Check()
     {
-        if (camera.transform.position.y > maxY )
+        if (camera.transform.position.y > maxY)
         {
             isEnter = false;
 

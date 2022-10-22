@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private bool ismove = true;
     private GameObject getTrash;
     [SerializeField]private Slider pressBar;
+    [SerializeField] private CameraMove[] cm;
     [Header("Animation")]
     [SerializeField] AnimationClip[] blink;
     private Animator anim;
@@ -115,6 +116,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            cm[0].isMove = false;
+            cm[1].isMove = false;
             groupObject.SetActive(true);
             clickPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clickPos.z = 0;
@@ -131,6 +134,8 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            cm[0].isMove = true;
+            cm[1].isMove = true;
             dragLine.enabled = false;
             StartCoroutine(Shottrash());
         }
