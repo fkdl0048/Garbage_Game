@@ -55,7 +55,6 @@ public class Item : MonoBehaviour
 
     private void TieGarBage()
     {
-        spriterenderer.color = fadeColor;
         Collider[] colls = Physics.OverlapSphere(transform.position, 10f);
         gameObject.SetActive(false);
         for (int i = 0; i < colls.Length; i++)
@@ -106,7 +105,6 @@ public class Item : MonoBehaviour
 
     private void Frozen()
     {
-        spriterenderer.color = fadeColor;
         Collider[] colls = Physics.OverlapSphere(transform.position, 10f);
         gameObject.SetActive(false);
         for (int i = 0; i < colls.Length; i++)
