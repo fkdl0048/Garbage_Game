@@ -65,10 +65,9 @@ public class Item : MonoBehaviour
 
         //Gizmos.DrawWireSphere(transform.position, 2f);
 
-        print(colls.Length);
-
         for (int i = 0; i < colls.Length; i++)
         {
+            Debug.Log("!");
             colls[i].gameObject.transform.SetParent(transform);
         }
     }
@@ -84,16 +83,11 @@ public class Item : MonoBehaviour
 
             if (rb != null && rb.CompareTag("Garbage"))
             {
-                AddExplosionForce2D(rb, transform.position, 800f, 5f);
+                AddExplosionForce2D(rb, transform.position, 900f, 6f);
             }
         }
-
-
-        //spriterenderer.color = fadeColor;
-        //transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
-
         EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform, 0.5f);
-        Destroy(gameObject, 0.4f);
+        Destroy(gameObject);
     }
 
     private void StaticBlock(GameObject obj)
