@@ -10,7 +10,7 @@ public class Title : MonoBehaviour
     public void StartBtn()
     {
         fadeImage.gameObject.SetActive(true);
-        fadeImage.DOFade(1, 1);
+        fadeImage.DOFade(1, 1).OnComplete(()=> SceneManager.LoadScene("Test"));
         //¾À ÀüÈ¯
     }
 
