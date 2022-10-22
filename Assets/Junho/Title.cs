@@ -17,6 +17,8 @@ public class Title : Singleton<Title>
     private GameObject btn;
     public void StartBtn()
     {
+        SoundManager.Instance.PlaySound(ESoundSources.UI_BUTTON);
+
         titleWnd.SetActive(false);
         fadeImage.gameObject.SetActive(true);
         fadeImage.GetComponent<SpriteRenderer>().DOFade(1, 1).OnComplete(() =>
@@ -35,6 +37,8 @@ public class Title : Singleton<Title>
     }
     public void ExitBtn()
     {
+        SoundManager.Instance.PlaySound(ESoundSources.UI_BUTTON);
+
         Application.Quit();
     }
 }

@@ -14,7 +14,6 @@ public enum ESoundSources
     P_DEATH,
     G_FLIES,
     ETC_SLIME,
-    ETC_EARTHQUAKE,
     ETC_TIME,
     UI_BUTTON,
     END
@@ -69,27 +68,35 @@ public class SoundManager : Singleton<SoundManager>
             g_Falls.Add(Resources.Load<AudioClip>("Audio/" + ((EG_FALLS)i).ToString()));
         }
 
-        BGMVolum = PlayerPrefs.GetFloat("BGMVolum");
-        SFXVolum = PlayerPrefs.GetFloat("SFXVolum");
+        BGMVolum = 0.5f;
+        SFXVolum = 1f;
         PlayBgm(EBGMSources.MAIN_BGM);
     }
 
     public void PlayBgm(EBGMSources source)
     {
-        if (bgm != null)
-        {
-            Destroy(bgm);
-        }
 
         GameObject go = new GameObject("bgm");
 
         AudioSource audio = go.AddComponent<AudioSource>();
-        audio.clip = audioSources[((int)source)];
+        audio.clip = bgmSources[((int)source)];
 
         bgm = audio;
         audio.volume = BGMVolum;
         audio.loop = true;
         audio.Play();
+    }
+    public void PlayG_Falls()
+    {
+        GameObject go = new GameObject("sound");
+
+        AudioSource audio = go.AddComponent<AudioSource>();
+        audio.clip = g_Falls[Random.Range(0,((int)EG_FALLS.END))];
+
+        audio.volume = SFXVolum;
+        audio.Play();
+
+        Destroy(go, audio.clip.length);
     }
     public void PlaySound(ESoundSources source)
     {
@@ -106,9 +113,4 @@ public class SoundManager : Singleton<SoundManager>
         Destroy(go, audio.clip.length);
     }
 
-    private void OnApplicationQuit()
-    {
-        PlayerPrefs.SetFloat("BGMVolum", BGMVolum);
-        PlayerPrefs.SetFloat("SFXVolum", SFXVolum);
-    }
 }

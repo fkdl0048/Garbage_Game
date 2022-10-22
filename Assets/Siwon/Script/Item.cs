@@ -52,6 +52,8 @@ public class Item : MonoBehaviour
 
     private void TieGarBage()
     {
+        SoundManager.Instance.PlaySound(ESoundSources.ETC_SLIME);
+
         Collider[] colls = Physics.OverlapSphere(transform.position, 10f, LayerMask.GetMask("Garbage"));
         for (int i = 0; i < colls.Length; i++)
         {

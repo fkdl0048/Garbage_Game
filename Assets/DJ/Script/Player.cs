@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isJump == false && isC_Jump == false)
         {
+            SoundManager.Instance.PlaySound(ESoundSources.P_JUMP);
             isC_Jump = true;
             StartCoroutine(C_Jump());
         }//����
@@ -96,7 +97,9 @@ public class Player : MonoBehaviour
         if(blocks.Length >= 4) Hp -= Time.deltaTime;
         else Hp += Time.deltaTime;
         Hp = Mathf.Clamp(Hp, 0, MaxHp);
-        if (Hp <= 0) { Debug.Log("a"); }
+        if (Hp <= 0) {
+            SoundManager.Instance.PlaySound(ESoundSources.P_DEATH);
+            SceneManager.LoadScene("DeathEnding"); }
     }
     IEnumerator C_Jump()
     {
@@ -156,9 +159,9 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag;
         if (collision.gameObject.tag != "Garbage" && collision.gameObject.tag != "Ground" && getTrash == null)
         {
+            SoundManager.Instance.PlaySound(ESoundSources.P_ACQUISITION);
             getTrash = collision.gameObject;
             trashColider = getTrash.GetComponent<Collider2D>();
             trashColider.isTrigger = true;

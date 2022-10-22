@@ -9,6 +9,7 @@ public class Dust : MonoBehaviour
     {
         if ((col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Garbage")) && !isGround)
         {
+            SoundManager.Instance.PlayG_Falls();
             //temp
             this.gameObject.tag = "Garbage";
             

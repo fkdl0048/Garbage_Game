@@ -8,7 +8,10 @@ public class GameOver : Singleton<GameOver>
 {
     [SerializeField] private Image fade;
 
-    public static GameOver instance;
+    private void Start()
+    {
+        SoundManager.Instance.PlayBgm(EBGMSources.ENDING_BGM);
+    }
     public void gameOver()
     {
         fade.gameObject.SetActive(true);
