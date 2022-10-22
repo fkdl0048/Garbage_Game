@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private ItemData data;
-
-    public ItemData Data
-    {
-        get
-        {
-            return data;
-        }
-        set
-        {
-            data = value;
-        }
-    }
+    public ItemData data;
 
     private SpriteRenderer spriterenderer;
 
@@ -33,7 +21,7 @@ public class Item : MonoBehaviour
         spriterenderer.sprite = data.itemSprite;
     }
 
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -94,7 +82,7 @@ public class Item : MonoBehaviour
 
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
         EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform.position, 0.5f);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private void StaticBlock()
@@ -125,12 +113,13 @@ public class Item : MonoBehaviour
             EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform.position, 0);
         }
     }
-    
+
     //시간 추가
     private void AddTime()
     {
         TimeAttack.Instance.TimeValue -= 10f;
         Destroy(gameObject);
+        
     }
 
     //private IEnumerator FadeOut()
