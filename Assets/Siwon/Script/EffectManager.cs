@@ -6,10 +6,10 @@ using UnityEngine;
 public enum EEffectType
 {
     Fire,
-    Landing,//ÂøÁö
+    Landing,//ï¿½ï¿½ï¿½ï¿½
     Boom,
-    Slime,//²ö²öÀÌ
-    Frozen,//¾ó¾îÀÖ´Â
+    Slime,//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    Frozen,//ï¿½ï¿½ï¿½ï¿½Ö´ï¿½
 }
 public class EffectManager : Singleton<EffectManager>
 {
@@ -17,16 +17,19 @@ public class EffectManager : Singleton<EffectManager>
 
 
     /// <summary>
-    /// ÀÌÆåÆ® ¼ÒÈ¯ Effect
+    /// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯ Effect
     /// </summary>
-    /// <param name="type">¼ÒÈ¯ÇÒ ÀÌÆÑÆ®ÀÇ Á¾·ù</param>
-    /// <param name="pos">¼ÒÈ¯ÇÒ À§Ä¡</param>
-    /// <param name="duration">ÀÌÆåÆ®ÀÇ Áö¼Ó½Ã°£ 0 == ¹«ÇÑ</param>
+    /// <param name="type">ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</param>
+    /// <param name="pos">ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½Ä¡</param>
+    /// <param name="duration">ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ 0 == ï¿½ï¿½ï¿½ï¿½</param>
     public void EffectSpawn(EEffectType type, Vector3 pos, float duration)
     {
         GameObject effect = null;
-
+        
+        if (effect == null)
+            return;
         effect = Instantiate(effects[(int)type]);
+        
         effect.transform.position = pos;
 
         if (duration != 0)
