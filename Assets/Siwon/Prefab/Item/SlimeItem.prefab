@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2196488513839362495}
   m_Layer: 0
   m_Name: SlimeItem
-  m_TagString: Untagged
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b23e9c65e36474085d40e1fe673dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: f8eed6556058ec641a1f6f4ddebb1763, type: 2}
   itemType: 1
   isThrowing: 0
 --- !u!60 &-2975585491269214312

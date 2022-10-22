@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3171083804583962324}
   m_Layer: 0
   m_Name: AddTimeItem
-  m_TagString: Untagged
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b23e9c65e36474085d40e1fe673dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 49e0bf86cab74f0469eb580c9ed74d4b, type: 2}
   itemType: 6
   isThrowing: 0
 --- !u!60 &-1483860593268058436

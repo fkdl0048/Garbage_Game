@@ -162,6 +162,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag != "Garbage" && collision.gameObject.tag != "Ground" && getTrash == null)
         {
             SoundManager.Instance.PlaySound(ESoundSources.P_ACQUISITION);
+            if (collision.gameObject.tag == "item") collision.gameObject.GetComponent<Item>().isThrowing = true;
             getTrash = collision.gameObject;
             trashColider = getTrash.GetComponent<Collider2D>();
             trashColider.isTrigger = true;
