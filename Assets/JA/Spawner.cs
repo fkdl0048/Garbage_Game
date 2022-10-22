@@ -29,6 +29,7 @@ public class Spawner : MonoBehaviour
             GameObject go = new GameObject("Garbage");
             go.transform.position = pos;
             go.transform.rotation = Quaternion.Euler(1,1,Random.Range(0,360));
+            go.tag = "Garbage";
             go.AddComponent<Rigidbody2D>();
             go.AddComponent<SpriteRenderer>();
             go.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,(sprites.Length))];
