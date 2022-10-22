@@ -79,6 +79,7 @@ public class Item : MonoBehaviour
         //}
 
         transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
+        gameObject.SetActive(false);
         //¿Ã∆Â∆Æº“»Ø
     }
 
