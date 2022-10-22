@@ -15,9 +15,14 @@ public class EffectManager : Singleton<EffectManager>
 {
     public List<GameObject> effects = new List<GameObject>();
 
+    private Canvas canvas;
+    private void Start()
+    {
+        canvas = FindObjectOfType<Canvas>();
+    }
 
     /// <summary>
-    /// ����Ʈ ��ȯ Effect
+    /// Effect
     /// </summary>
     /// <param name="type"></param>
     /// <param name="pos"></param>
@@ -28,7 +33,7 @@ public class EffectManager : Singleton<EffectManager>
 
         if (effect == null)
             return;
-        effect = Instantiate(effects[(int)type]);
+        effect = Instantiate(effects[(int)type],canvas.transform);
 
         if (type == EEffectType.Slime)
         {
