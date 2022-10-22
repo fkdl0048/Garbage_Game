@@ -15,6 +15,8 @@ public class Dust : MonoBehaviour
             
             isGround = true;
             GameObject go = DustEffect.Instance.SetDustEffect();
+            if (go == null)
+                return;
             go.transform.position = col.contacts[0].point;
             //go.transform.rotation = transform.rotation;
             go.GetComponent<Animator>().Play(0);
