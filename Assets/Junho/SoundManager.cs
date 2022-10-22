@@ -11,14 +11,26 @@ public enum ESoundSources
     P_WALK,
     P_JUMP,
     P_ACQUISITION,
-    P_AIMING,
-    P_THROWING,
     P_DEATH,
     G_FLIES,
-    G_FALLS,
-    G_COLLAPSES,
+    ETC_SLIME,
     ETC_EARTHQUAKE,
+    ETC_TIME,
     UI_BUTTON,
+    END
+}
+public enum EG_FALLS
+{
+    FALLS_1,
+    FALLS_2,
+    FALLS_3,
+    FALLS_4,
+    FALLS_5,
+    FALLS_6,
+    FALLS_7,
+    FALLS_8,
+    FALLS_9,
+    FALLS_10,
     END
 }
 public enum EBGMSources
@@ -34,6 +46,8 @@ public class SoundManager : Singleton<SoundManager>
 
     private List<AudioClip> audioSources = new List<AudioClip>();
     private List<AudioClip> bgmSources = new List<AudioClip>();
+    private List<AudioClip> g_Falls = new List<AudioClip>();
+
 
     public float BGMVolum;
     public float SFXVolum;
@@ -48,6 +62,10 @@ public class SoundManager : Singleton<SoundManager>
         for (int i = 0; i < ((int)EBGMSources.END); i++)
         {
             bgmSources.Add(Resources.Load<AudioClip>("Audio/" + ((EBGMSources)i).ToString()));
+        }
+        for (int i = 0; i < ((int)EG_FALLS.END); i++)
+        {
+            bgmSources.Add(Resources.Load<AudioClip>("Audio/" + ((EG_FALLS)i).ToString()));
         }
 
         BGMVolum = PlayerPrefs.GetFloat("BGMVolum");
