@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,19 +14,26 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigid;
     private Collider2D trashColider;
     private Rigidbody2D trashrigid;
+    private LayerMask layerMaskGarbage;
 
     private bool isJump = false;
     private bool isC_Jump = false;
     private bool ismove = true;
     private GameObject getTrash;
+    [SerializeField]private Slider pressBar;
     [Header("Animation")]
     [SerializeField] AnimationClip[] blink;
     private Animator anim;
     [Header("Stats")]
+    [SerializeField] float Hp;
+    [SerializeField] float MaxHp;
     [SerializeField] float throwPower;
     [SerializeField] float maxthrowPower;
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpPower;
+    [SerializeField] float jumpdelay;
+    [SerializeField] Vector2 pressRange;
+    [SerializeField] Vector3 RangePos;
     [Header("Mark")]
     [SerializeField] GameObject markObject;
     [SerializeField] GameObject groupObject;
@@ -33,6 +42,7 @@ public class Player : MonoBehaviour
     private List<GameObject> markGroup = new List<GameObject>();
     private void Start()
     {
+        layerMaskGarbage = LayerMask.GetMask("Garbage");
         dragLine = GetComponent<LineRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -58,7 +68,8 @@ public class Player : MonoBehaviour
             anim.SetBool("Jump", false);
         }
         else isJump = true;
-      
+        PressCheck();
+        pressBar.value = Hp / MaxHp;
     }
     private void Walk()
     {
@@ -79,12 +90,19 @@ public class Player : MonoBehaviour
             StartCoroutine(C_Jump());
         }//����
     }
-
+    private void PressCheck()
+    {
+        Collider2D[] blocks = Physics2D.OverlapBoxAll(transform.position + RangePos, pressRange, 0, layerMaskGarbage);
+        if(blocks.Length >= 4) Hp -= Time.deltaTime;
+        else Hp += Time.deltaTime;
+        Hp = Mathf.Clamp(Hp, 0, MaxHp);
+        if (Hp <= 0) { Debug.Log("a"); }
+    }
     IEnumerator C_Jump()
     {
         anim.SetBool("Jump", true);
         ismove = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(jumpdelay);
         rigid.velocity += Vector2.up * jumpPower;
         isC_Jump = false;
         isJump = true;
@@ -147,5 +165,9 @@ public class Player : MonoBehaviour
             trashrigid = trashrigid = getTrash.GetComponent<Rigidbody2D>();
             trashrigid.gravityScale = 0;
         }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(transform.position + RangePos, pressRange);
     }
 }
