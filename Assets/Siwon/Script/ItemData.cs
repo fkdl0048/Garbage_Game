@@ -10,6 +10,7 @@ public enum EItemType
     StaticBlock,
     Fire,
     Frozen,
+    AddTime,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Datas/ItemData", order = int.MinValue)]

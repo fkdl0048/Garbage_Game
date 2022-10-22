@@ -56,6 +56,9 @@ public class Item : MonoBehaviour
                 case EItemType.Frozen:
                     Frozen();
                     break;
+                case EItemType.AddTime:
+                    AddTime();
+                    break;
             }
         }
     }
@@ -121,6 +124,13 @@ public class Item : MonoBehaviour
             colls[i].gameObject.transform.SetParent(transform);
             EffectManager.Instance.EffectSpawn(EEffectType.Frozen, colls[i].transform.position, 0);
         }
+    }
+    
+    //시간 추가
+    private void AddTime()
+    {
+        TimeAttack.Instance.TimeValue -= 10f;
+        Destroy(gameObject);
     }
 
     //private IEnumerator FadeOut()
