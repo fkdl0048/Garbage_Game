@@ -6,10 +6,10 @@ using UnityEngine;
 public enum EEffectType
 {
     Fire,
-    Landing,//����
+    Landing,
     Boom,
-    Slime,//������
-    Frozen,//����ִ�
+    Slime,
+    AddTime,
 }
 public class EffectManager : Singleton<EffectManager>
 {
@@ -19,18 +19,29 @@ public class EffectManager : Singleton<EffectManager>
     /// <summary>
     /// ����Ʈ ��ȯ Effect
     /// </summary>
-    /// <param name="type">��ȯ�� ����Ʈ�� ����</param>
-    /// <param name="pos">��ȯ�� ��ġ</param>
-    /// <param name="duration">����Ʈ�� ���ӽð� 0 == ����</param>
-    public void EffectSpawn(EEffectType type, Vector3 pos, float duration)
+    /// <param name="type"></param>
+    /// <param name="pos"></param>
+    /// <param name="duration"></param>
+    public void EffectSpawn(EEffectType type, Transform pos, float duration)
     {
         GameObject effect = null;
-        
+
         if (effect == null)
             return;
         effect = Instantiate(effects[(int)type]);
-        
-        effect.transform.position = pos;
+
+        if (type == EEffectType.Slime)
+        {
+            effect.transform.SetParent(pos);
+        }
+        else if(type == EEffectType.AddTime)
+        {
+            effect.transform.position = new Vector2(850, -200);
+        }
+        else
+        {
+            effect.transform.position = pos.position;
+        }
 
         if (duration != 0)
         {
