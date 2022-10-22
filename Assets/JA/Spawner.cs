@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
     {
         curTime += Time.deltaTime;
 
-        if (curTime >= itemDelay && !isItem)
+        if (curTime >= itemDelay + (Random.Range(-itemRandominterval, itemRandominterval)) && !isItem)
         {
             curTime = 0f;
             isItem = true;
@@ -50,7 +50,6 @@ public class Spawner : MonoBehaviour
                 isItem = false;
                 Instantiate(itemList[Random.Range(0, itemList.Length)], pos,
                     Quaternion.Euler(1, 1, Random.Range(0, 360)));
-                yield return new WaitForSeconds(itemDelay + (Random.Range(-itemRandominterval, itemRandominterval)));
             }
             else
             {
@@ -63,8 +62,9 @@ public class Spawner : MonoBehaviour
                 go.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0,(sprites.Length))];
                 go.AddComponent<PolygonCollider2D>();
                 go.AddComponent<Dust>();
-                yield return new WaitForSeconds(spawnDelay + (Random.Range(-spawnRandominterval, spawnRandominterval)));
+                
             }
+            yield return new WaitForSeconds(spawnDelay + (Random.Range(-spawnRandominterval, spawnRandominterval)));
         }
     }
 }
