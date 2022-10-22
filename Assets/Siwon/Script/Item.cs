@@ -14,6 +14,8 @@ public class Item : MonoBehaviour
 
     public bool isThrowing;
 
+    public bool isFallen;
+
     private void Start()
     {
         spriterenderer = GetComponent<SpriteRenderer>();
@@ -77,8 +79,11 @@ public class Item : MonoBehaviour
 
     private void StaticBlock(GameObject obj)
     {
+        if (obj.CompareTag("Ground") == false)
+        {
+            obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
         rb.bodyType = RigidbodyType2D.Static;
-        obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 
     private void Fire()
