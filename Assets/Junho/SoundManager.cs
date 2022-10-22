@@ -68,8 +68,6 @@ public class SoundManager : Singleton<SoundManager>
             g_Falls.Add(Resources.Load<AudioClip>("Audio/" + ((EG_FALLS)i).ToString()));
         }
 
-        BGMVolum = 0.5f;
-        SFXVolum = 1f;
         PlayBgm(EBGMSources.MAIN_BGM);
     }
 

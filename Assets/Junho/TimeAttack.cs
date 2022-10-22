@@ -28,7 +28,7 @@ public class TimeAttack : Singleton<TimeAttack>
                 SceneManager.LoadScene("DeathEnding");
             }
 
-            handle.transform.Rotate(0, 0, timeValue);
+            handle.transform.Rotate(0, 0, 1);
             timeSlider.value = timeValue / maxTime;
         }
     }
@@ -36,6 +36,9 @@ public class TimeAttack : Singleton<TimeAttack>
     private void FixedUpdate()
     {
         if (Spawner.Instance.isSpawn)
-        TimeValue += Time.deltaTime;
+        {
+            TimeValue += Time.deltaTime;
+
+        }
     }
 }
