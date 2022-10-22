@@ -54,9 +54,14 @@ public class Item : MonoBehaviour
 
     private void TieGarBage()
     {
-        SoundManager.Instance.PlaySound(ESoundSources.ETC_SLIME);
+        if (isFallen == false)
+        {
+            SoundManager.Instance.PlaySound(ESoundSources.ETC_SLIME);
+        }
 
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, LayerMask.GetMask("Garbage"));
+        isFallen = true;
+
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 2f, 6);
 
         //Gizmos.DrawWireSphere(transform.position, 2f);
 
@@ -82,8 +87,8 @@ public class Item : MonoBehaviour
                 AddExplosionForce2D(rb, transform.position, 800f, 5f);
             }
         }
-        
-        
+
+
         //spriterenderer.color = fadeColor;
         //transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
 
@@ -138,7 +143,7 @@ public class Item : MonoBehaviour
     //    yield return new WaitForSeconds(2f);
     //    Destroy(gameObject);
     //}
-    
+
     public static void AddExplosionForce2D(Rigidbody2D rb, Vector2 explosionOrigin, float explosionForce, float explosionRadius)
     {
         Vector2 direction = (Vector2)rb.transform.position - explosionOrigin;
