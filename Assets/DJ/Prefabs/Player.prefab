@@ -140,10 +140,10 @@ MonoBehaviour:
   Hp: 4
   MaxHp: 4
   throwPower: 50
-  maxthrowPower: 10
-  moveSpeed: 3
+  maxthrowPower: 15
+  moveSpeed: 4
   jumpPower: 7
-  jumpdelay: 0
+  jumpdelay: 0.2
   pressRange: {x: 1.7, y: 4}
   RangePos: {x: 0, y: 2.8, z: 0}
   markObject: {fileID: 8134098933999538027, guid: b429c9dededc830439f9c253302a6aab, type: 3}

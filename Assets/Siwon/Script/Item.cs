@@ -70,8 +70,22 @@ public class Item : MonoBehaviour
 
     private void Boom()
     {
-        spriterenderer.color = fadeColor;
-        transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
+        Vector2 explosionPos = transform.position;
+        var collider2D = Physics2D.OverlapCircleAll(explosionPos, 2f);
+
+        foreach (var VARIABLE in collider2D)
+        {
+            Rigidbody2D rb = VARIABLE.GetComponent<Rigidbody2D>();
+
+            if (rb != null && rb.CompareTag("Garbage"))
+            {
+                AddExplosionForce2D(rb, transform.position, 800f, 5f);
+            }
+        }
+        
+        
+        //spriterenderer.color = fadeColor;
+        //transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1.5f, 1.5f), 0.1f);
 
         EffectManager.Instance.EffectSpawn(EEffectType.Boom, transform, 0.5f);
         Destroy(gameObject, 0.4f);
@@ -109,7 +123,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    //½Ã°£ Ãß°¡
+    //ï¿½Ã°ï¿½ ï¿½ß°ï¿½
     private void AddTime()
     {
         TimeAttack.Instance.TimeValue -= 10f;
@@ -124,4 +138,11 @@ public class Item : MonoBehaviour
     //    yield return new WaitForSeconds(2f);
     //    Destroy(gameObject);
     //}
+    
+    public static void AddExplosionForce2D(Rigidbody2D rb, Vector2 explosionOrigin, float explosionForce, float explosionRadius)
+    {
+        Vector2 direction = (Vector2)rb.transform.position - explosionOrigin;
+        float forceFalloff = 1 - (direction.magnitude / explosionRadius);
+        rb.AddForce(direction.normalized * (forceFalloff <= 0 ? 0 : explosionForce) * forceFalloff);
+    }
 }

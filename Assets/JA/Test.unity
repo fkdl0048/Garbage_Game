@@ -397,12 +397,8 @@ MonoBehaviour:
   spawnRandominterval: 0.5
   itemList:
   - {fileID: 7869788111356961772, guid: 421b51b9bc0551f409e8e8bd5204acbb, type: 3}
-  - {fileID: 7869788111356961772, guid: bb1c7389847acad4ba3600dc65702746, type: 3}
-  - {fileID: 7869788111356961772, guid: 20ac45f3e8e622a4d94221c6fbb40c7c, type: 3}
-  - {fileID: 7869788111356961772, guid: 48e4427d0ce072644951ed1c12f2b1a2, type: 3}
-  - {fileID: 7869788111356961772, guid: 5c5b8a233b26c624f85fd6aeb3da8ba9, type: 3}
-  itemDelay: 10
-  itemRandominterval: 0.2
+  itemDelay: 15
+  itemRandominterval: 3
 --- !u!212 &1235520718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -481,14 +477,6 @@ PrefabInstance:
       propertyPath: pressBar
       value: 
       objectReference: {fileID: 1558859349}
-    - target: {fileID: 3468103909900717729, guid: 2cf30ac987a5e96489b3b63bf256e849, type: 3}
-      propertyPath: jumpdelay
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3468103909900717729, guid: 2cf30ac987a5e96489b3b63bf256e849, type: 3}
-      propertyPath: moveSpeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3468103909900717731, guid: 2cf30ac987a5e96489b3b63bf256e849, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -571,8 +559,8 @@ MonoBehaviour:
   audioSources: []
   bgmSources: []
   g_Falls: []
-  BGMVolum: 0.5
-  SFXVolum: 1
+  BGMVolum: 0.1
+  SFXVolum: 0.6
   bgm: {fileID: 0}
 --- !u!4 &1394182678
 Transform:
@@ -1172,7 +1160,7 @@ PrefabInstance:
       objectReference: {fileID: 8475227708715623858, guid: 8c8f128e14b09ba42b0a32438547f066, type: 2}
     - target: {fileID: 2385371103112582177, guid: 6b869790d47293b4e9c0dbfa138152b6, type: 3}
       propertyPath: maxTime
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2385371103112582181, guid: 6b869790d47293b4e9c0dbfa138152b6, type: 3}
       propertyPath: m_IgnoreReversedGraphics
