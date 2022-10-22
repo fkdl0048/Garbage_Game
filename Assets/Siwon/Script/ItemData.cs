@@ -6,7 +6,8 @@ public enum EItemType
 {
     None,
     Vine,//µ¢±¼
-
+    Boom,
+    StaticBlock,
 }
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Datas/ItemData", order = int.MinValue)]
@@ -17,6 +18,8 @@ public class ItemData : ScriptableObject
     public Sprite itemSprite;
 
     public string name;
+
+    public float force;
 
     
 }
